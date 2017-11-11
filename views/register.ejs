@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register Here</title>
+	<%include head%>
+
+<script type="text/javascript">
+  var webAuth = new auth0.WebAuth({
+    domain: 'smdigitalcrafts.auth0.com',
+    clientID: 'Ra_Fi5ZaAbpyRZDRD7x2fLeIaVAWgo0I'
+  });
+
+</script>
+
+
+</head>
+<body>
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                    <h1>REGISTER</h1>
+
+                <div class="col-sm-12 text-danger error"></div>
+                <form action="/registerProcess" method="post">
+                   <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" name="name">
+                        <label for="email">Email Address:</label>
+                        <input type="email" class="form-control" name="email">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" name="password">
+                        <label for="address">Street Address:</label>
+                        <input type="text" class="form-control" name="address">
+                        <label for="city">City:</label>
+                        <input type="text" class="form-control" name="city">
+                        <label for="state">State:</label>
+                        <input type="text" class="form-control" name="state">
+                        <label for="zip">Zipcode:</label>
+                        <input type="text" class="form-control" name="zip">
+                        <label for="phone">Phone Number:</label>
+                        <input type="text" class="form-control" name="phone">
+                        <br>
+                        <label for="insurance">Insurance Provider:</label>
+<!--                         <input type="text" class="form-control" name="insurance">
+ -->                        <!-- <div align="center"> -->
+							<select name="insurance">
+							<option value="Aetna">Aetna</option>
+							<option value="Cigna">Cigna</option>
+							<option value="BlueCross">Blue Cross</option>
+							<option value="IBC_Amerihealth">IBC Amerihealth</option>
+							<option value="Healthnet">Healthnet</option>
+							<option value="United_Healthcare">United Healthcare</option>
+							</select>
+							<!-- </div>   -->        
+							<br>
+							<br>
+							<br>             
+                        <button class="btn btn-primary">Register!</button>
+                        <br>
+                        <br>
+                        
+                        <a  href="/login" class="btn btn-success">Already registered? Login here!</a>
+                   
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

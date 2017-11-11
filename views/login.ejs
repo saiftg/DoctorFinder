@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<%include head%>
+
+<!-- <script type="text/javascript">
+  var webAuth = new auth0.WebAuth({
+    domain: 'smdigitalcrafts.auth0.com',
+    clientID: 'Ra_Fi5ZaAbpyRZDRD7x2fLeIaVAWgo0I'
+  });
+
+  webAuth.authorize({
+  connection: 'facebook';
+});
+
+</script> -->
+
+</head>
+<body>
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                    <h1>LOGIN</h1>
+
+                <div class="col-sm-12 text-danger error"></div>
+                <form action="/loginProcess" method="post">
+                    <!-- <div class="col-sm-12">
+                        <input type="text" name="name" placeholder="Enter your Name" />
+                    </div>
+ -->
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" class="form-control" name="email">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" name="password">
+                        <button class="btn btn-success">Login!</button>
+                    </div>
+
+                </form>
+
+                <form action="/loginProcessX" method="post">
+                 <div class="social-login">
+                        <a href="/loginX" class="btn btn-primary">Login w. Facebook</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
