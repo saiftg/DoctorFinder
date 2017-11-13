@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>results page</title>
+</head>
+<body>
+    <h1>results page</h1>
+    <h1>Here are results based on your input:</h1>
+    <h3>Here is your latitude: <%=latitude%></h3>
+    <h3>Here is your longitude: <%=longitude%></h3>
+    
+    <% for(let i = 0; i < parsedData.data.length; i++){ %>
+        <div class = "col-sm-3">
+    <img src = "<%=parsedData.data[i].profile.image_url%>">
+    <div class = "name"><a href = "<%=parsedData.data[i].uid%>"><%=parsedData.data[i].profile.first_name%> <%=parsedData.data[i].profile.last_name%></a>
+    </div>
+    <div class = "phone"><a href="<%parsedData.data[i].uid%>"><%=parsedData.data[i].practices[0].phones[0].number%></a>
+    </div>
+        </div>
+        <%}%>
+</body>
+</html>

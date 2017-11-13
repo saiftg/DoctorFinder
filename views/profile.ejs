@@ -3,16 +3,17 @@
 <head>
 	<title></title>
 
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!--JQUERY-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-
 	
-	<script type="text/javascript" src="js/scripts.js"></script>
+	<!-- <script type="text/javascript" src="js/scripts.js"></script> -->
 
 </head>
 <body>
@@ -22,18 +23,18 @@
 
 
 		
-	<div class="page-header">
-  		<h1>Welcome <small><%=user.name%></small></h1>
-		</div>
-		<div class="col-sm-12">
-			<div class="col-sm-3">
-				<img src="norris.jpg">
+		<div class="page-header">
+				<h1>Welcome <small><%=user.name%></small></h1>
 			</div>
-			<div class="col-sm-5">
-				<table style="width:100%">
- 			<h3>Profile:</h3>
+			<div id="info" class="col-sm-12">
+				<div class="col-sm-3">
+					<img src="http://media.masslive.com/breakingnews/photo/2012/07/norrisjpg-02cf5b55dfb25bd6.jpg">
+				</div>
+				<div class="col-sm-5">
+					<table style="width:100%">
+				<h3>Profile:</h3>
 
-  			<tr>
+						  			<tr>
     				<th>Name:</th>
     			<td><%=user.name%></td>
   			</tr>
@@ -62,49 +63,67 @@
   				<th>Zipcode:</th>
   			<td><%=user.zip%></td>
 			</tr>
-  			
-		    <th>Insurance:</th>
-		    <td><%=user.insurance%></td>
-		  </tr>
-		  <tr>
-		    <th>Primary Care Physician:</th>
-		    <td>N/A</td>
-		  </tr>
-		 
-		  
-		</table>
+	 
+
+					<tr>
 					
+			<th>Insurance:</th>
+			<td><%=user.insurance%></td>
+		</tr>
+		<tr>
+			<th>Primary Care Physician:</th>
+			<td><%=user.doctor%></td>
+		</tr>
+	 
+		
+	</table>
+				
 
 
 
-		<form action="/changeProcess" method="post">
+
+				<form action="/changeProcess" method="post">
 			<button class="btn btn-primary" id="change-info-btn">Change Info</button>
 		</form>
-		</div>
-	</tr>
-	<div class = "col-sm-4">
-		<table>
-			<h3>Favorite Doctors:</h3>
+		<br>
+		<form action="/" method="get">
+			<button class="btn btn-success" id="search-btn">Back to Search</button>
+		</form>
+			</div>
+		</tr>
+		<div class = "col-sm-4">
+		<form action="/doctorAdd" method="post">
 
-  			<tr> 
-   				 <td>Dr. Victor Von Doom</td>
-  			</tr>
-  			<tr> 
-   				 <td>Dr. Otto Octavius </td>
-  			</tr>
-  			<tr> 
-   				 <td>Dr. Acula</td>
-  			</tr>
-  			<tr> 
-   				 <td>Dr. Dre</td>
-  			</tr>
-		</table>
+			<table>
+				<h3>Favorite Doctors:</h3>
+
+					<tr> 
+						 <td>Dr. Victor Von Doom</td>
+						 <button class="btn btn-success">Add</button>
+
+					</tr>
+					<tr> 
+						 <td>Dr. Otto Octavius </td>
+					</tr>
+					<tr> 
+						 <td>Dr. Acula</td>
+					</tr>
+					<tr> 
+						 <td>Dr. Dre</td>
+					</tr>
+					<tr>
+						<td>Dr. Who</td>
+					</tr>
+			</table>
+		</form>
+		</div>
+
 	</div>
 
-</div>
 
-
-</div>
+	</div>
+	<div class="col-sm-12">
+			<div class="footer">2017 Frontend Project: Nikolas, Taylor, Saif, Zach
 
 
 

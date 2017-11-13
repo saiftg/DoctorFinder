@@ -1,15 +1,20 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<% include head %>
-	<link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
+	<title>Search page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--JQUERY-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+	
+	<script type="text/javascript" src="js/scripts.js"></script>
 <body>
 
 
-	
+
 	<div class="container">
 		<div class="header">
 					<a class="top-logo"></a>
@@ -20,20 +25,48 @@
 			<h4>Small Descriptive Title</h4>
 			<br>
 			<br>
-				<div class='col-sm-6'>
-					<div class="box1">
-						<div class="box-content1">
-							<h1>Guest</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</p>
-							<button class="btn btn-success btn-center">Get Started</button>
-						</div>
-					</div>
+		</div>
+		<div class="container">
+	
+ <div class="col-lg-6 col-lg-offset-3">
+    <!-- /.col-lg-6 -->
+</div><!-- /.row -->
+
+	
+	<div class="container">
+		<div class = "col-xs-6 col-xs-offset-3">
+				<div class="box2">
+						<h1><strong>Find a local doctor</strong></h1>
+						<div class="col-sm-12 text-danger error"></div>
+						<form action = "/search"  method = "post">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search By Location..." name = "zip_code">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go!</button>
+                </span>
+            </div>
+            </form>
+    <div class="login-register col-sm-12">
+    	<div class = "col-sm-6 text-right login-link">
+    		<a href="/login">Log-in</a>
+    		</div>
+    
+    	<div class="col-sm-6 text-left">
+    		<a href="/register">Register</a>
+    	</div>
+
+    </div>
+  </div>
+
+					
+			</div>
+		</div>
+	
+
+				
+
+
+				<!-- <div class = "col-xs-6">
 					<div class="box2">
 						<div class="box-content2">
 							<h1>Login/Register</h1>
@@ -44,19 +77,21 @@
 							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 							</p>
-							<a href="/login" id="login" class="btn btn-success btn-center">Login</a>
-							<a href="/register" id="register">Don't have an account? Register Here!</a>
+							<button class="btn btn-success btn-center">Login</button>
+							<a href="">Don't have an account? Register Here!</a>
 						</div>
-					</div>
-						
+					</div> -->
+
+
 
 				</div>
-				
 			</div>
-		<div class="col-sm-6">
+
+			</div>
+	<!-- 	<div class="col-sm-6">
 			<div class="footer">2017 Frontend Project: Nicolajs, Taylor, Saif, Zach</div>
-		</div>
-			
+		</div> -->
+
 	</div>
 
 </body>

@@ -1,4 +1,3 @@
-
 body {
 	padding: 30px;
   	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -6,62 +5,54 @@ body {
 	background-size: cover;
 	min-height: 100%;
 
+
 }
+
+/* a {
+  color: #00B7FF;
+} */
 
 img{
 	width: 200px;
 }
-
-a {
-  color: #00B7FF;
-}
-
-w3-container a {
-    color: #337ab7;
-    text-decoration: none;
-}
-
 
 .box1{
 	height: 300px;
 	width: 49%;
 	margin: auto;
 	background: white;
-	display: inline-block;
-	position: relative;
+
+	
 	background: rgba(0,0,0,0.5);
 }
 .box2{
-	height: 300px;
-	width: 49%;
-	margin: auto;
+	width:  100%;
+	margin:0 auto;
 	background: white;
-	display: inline-block;
+	display: block;
 	position: relative;
 	background: rgba(0,0,0,0.5);
+	
+	padding: 10%;
+	padding-top: 5%;
 }
-h2{
+/* h2{
 	text-align: center;
 	color: white;
 }
 h4{
 	text-align: center;
 	color: white;
-}
+} */
 a{
 	color: lightblue;
 	padding: 1%;
 }
-
-#login {
-	padding: auto;
-	margin-left: 100px;
-}
-.col-sm-6{
+/* .col-sm-6{
 	padding: 0px;
 	margin: auto;
 	width: 100%;
-}
+} */
 .box1 h1{
 	text-align: center;
 	color: white;
@@ -79,11 +70,6 @@ a{
 	/* display: inline; */
 }
 
-p{
-	padding: 2%;
-	color: white;
-	position: relative;
-}
 button{
 	margin-left: 220px;
 }
@@ -96,3 +82,53 @@ button{
 	margin-top: 220px;
 	overflow: hidden;
 	text-align: center;
+
+	
+
+	
+}
+
+a {
+  color: #00B7FF;
+}
+
+.band-image img{
+	width: 100%;
+}
+
+.profile {
+	width: 200px;
+	height:  100%;
+}
+
+.doctor-results {
+	width: 150px;
+	height: 100%;
+	border: 1px solid black;
+	text-align: center;
+}
+
+
+.search-boxes {
+	margin-right: 50%;
+}
+
+
+
+.search-box {
+	border: 1px solid black;
+
+	margin: auto;
+
+
+}
+
+.login-register {
+	display: inline-block;
+	position: relative;
+	color: floralwhite;
+}
+
+.login-link {
+	border-right: 1px solid floralwhite;
+}

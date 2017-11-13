@@ -4,9 +4,12 @@ const passport = require('passport');
 
 
 var config = require('../config/config')
-var request = require('request')
+var request_module = require('request')
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
+const geocode = require('../geocode/geocode.js');
+
+
 
 const env = {
   AUTH0_CLIENT_ID: 'Ra_Fi5ZaAbpyRZDRD7x2fLeIaVAWgo0I',
@@ -41,6 +44,62 @@ router.get('/users', (req, res, next)=>{
         name: name,
 })
 });
+
+
+router.post('/search', (request, response) =>{
+    var zip = request.body.zip_code;
+    var per_page = request.body.per_page;
+    (per_page == undefined) ? per_page = 10 : per_page = per_page;
+    var insurance = request.body.insurance;
+    var specialty = request.body.specialty;
+    console.log("we received from for: ", zip, per_page, insurance, specialty)
+    // console.log(request.body)
+    console.log("this is what we got from form", zip, per_page, insurance, specialty);
+    geocode.geocodeAddress(zip).then((result)=>{
+        var lat = result.latitude;
+        var lng = result.longitute;
+        console.log("api for guest search and", lat, lng)
+        if (insurance == undefined || specialty == undefined){
+        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=6864ad983287baee8365ce0542f8c459`;
+        }else{
+        console.log("api for extended search")
+        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty}&insurance_uid=${insurance}&location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=6864ad983287baee8365ce0542f8c459`
+        }
+        request_module ({url:baseURL, json: true}, (error, res, drData) => {
+            // console.log(drData)
+            var parsedData = (drData);
+            var uid = parsedData.data[0].uid;
+            console.log(uid);
+            // console.log(parsedData);
+        
+            response.render('results', {
+                header: "Results page",
+                latitude: lat,
+                longitude: lng,
+                parsedData: parsedData
+            
+            })
+        })
+    }).catch((errorMessage) => {//if not success - error message
+        console.log(errorMessage);
+    })
+});
+router.get('/:uid', (request, response)=>{
+    var uid = request.params.uid;
+    console.log(uid);
+    request_module ({url:`https://api.betterdoctor.com/2016-03-01/doctors/${uid}?user_key=6864ad983287baee8365ce0542f8c459`, json: true}, (error, res, drProfile) => {
+            // console.log(drData)
+            var parsedProfile = (drProfile);
+            // console.log(parsedProfile);
+            response.render('profileDoc',{
+            parsedProfile: parsedProfile
+        
+        })      
+    })
+});
+
+
+
 
 
 router.get('/register', function(req,res,next){
@@ -107,7 +166,8 @@ router.post('/profileNew', (req,res,next)=>{
 					req.session.state = req.body.state;
 					req.session.zip = req.body.zip;
 					req.session.phone = req.body.phone;
-					req.session.insurance = req.body.insurance
+					req.session.insurance = req.body.insurance;
+					req.session.doctor = req.body.doctor;
 
 			var insuranceID = config.insurance_ID[req.body.insurance];
 
@@ -122,7 +182,8 @@ router.post('/profileNew', (req,res,next)=>{
 							   state = ?,
 							   zip_code = ?,
 							   insurance = ?,
-							   insurance_ID = ?
+							   insurance_ID = ?,
+							   doctor = ?
 							   WHERE email = ?`;
 
 			console.log(insertQuery);
@@ -136,6 +197,7 @@ router.post('/profileNew', (req,res,next)=>{
 										  req.session.zip,
 										  req.body.insurance,
 										  insuranceID,
+										  req.body.doctor,
 										  email], (error)=>{
 				if (error){
 					throw error;
@@ -146,15 +208,6 @@ router.post('/profileNew', (req,res,next)=>{
 				}
 			});
 
-
-
-					// res.redirect('/profileX');
-					// console.log(results[0]);
-
-		// 		}else{
-		// 			res.redirect('/login?msg=badPassword');
-		// 			res.render("That email is not registered.");
-		// 			console.log("GET OUT");
 				}
 			}
 		}
@@ -360,6 +413,74 @@ router.get('/loginProcessX', (req,res,next)=>{
 		}
 	});
 });
+
+
+router.post('/doctorAdd', (req,res,next)=>{
+	// res.json(req.body);
+
+	var email = req.session.email;
+	// var insurance = req.body.insurance
+
+	var selectQuery = `SELECT * FROM users WHERE email = ?;`;
+	console.log(email);
+	connection.query(selectQuery,[email],(error,results)=>{
+		if(error){
+			throw error;
+		}else {
+			if(results.length == 0){
+				res.redirect('/register?msg=badUser');
+				// res.send("That email is not registered.");
+
+				console.log("NO SUCH USER")
+			}else{
+				// call compareSync
+				// var emailMatch = compareSync(email,results[0].email);
+
+				if (email === results[0].email){
+					req.session.name = req.body.name;
+					// req.session.uid = results[0].id;
+					req.session.email = req.body.email;
+					req.session.address = req.body.address;
+					req.session.city = req.body.city;
+					req.session.state = req.body.state;
+					req.session.zip = req.body.zip;
+					req.session.phone = req.body.phone;
+					req.session.insurance = req.body.insurance
+
+			var insuranceID = config.insurance_ID[req.body.insurance];
+			var doctor = "DOCTOR GIGGLES";
+
+
+			// var insertQuery = `REPLACE LOW_PRIORITY INTO users (name, street_address, city, state, zip_code, phone, insurance, insurance_ID) VALUES (?,?,?,?,?,?,?,?,?,?);`;
+			var insertQuery = `UPDATE users 
+							   SET doctor = ?
+							   WHERE email = ?`;
+
+			console.log(insertQuery);
+
+			connection.query(insertQuery,[doctor, email], (error)=>{
+				if (error){
+					throw error;
+
+				}else{
+					// res.redirect("/profileX");
+					console.log(email);
+				}
+			});
+
+				}
+			}
+		}
+	});
+});
+
+
+
+
+
+
+
+
 
 // Perform the final stage of authentication and redirect to '/user'
 // router.get(

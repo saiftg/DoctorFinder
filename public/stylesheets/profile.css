@@ -1,0 +1,38 @@
+body{
+	background: linear-gradient(to right, lightgray, dodgerblue);
+	height: 100%;
+}
+.container{
+	min-height: 100%;
+	padding: 0 0 100px;
+}
+.col-sm-12{
+	padding: 1%;
+}
+#info{
+	background: rgba(0,0,0,0.5);
+}
+tr, th, td{
+	color: white;
+}
+td{
+	font-size: 16px;
+}
+h3{
+	color: white;
+}
+.page-header{
+	color: white;
+}
+button{
+	margin-top: 20px;
+}
+.footer{
+	background-color: lightblue;
+	text-align: center;
+	left: 0;
+	bottom: 0;
+	width:100%;
+  	font-size: 20px;
+  	position: fixed;
+}
