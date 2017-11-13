@@ -8,6 +8,9 @@ var session = require('express-session');
 
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
+const Auth0Lock = require('auth0-lock');
+var auth0 = require('auth0-js');
+
 
 const strategy = new Auth0Strategy(
   {
@@ -16,10 +19,33 @@ const strategy = new Auth0Strategy(
     clientSecret: "TXW4JxXerJCvuGsFS7rwSQVP52vW1h8d-W8texMtpU0FWwlwl3q_T2u5YmsAhJTS",
     callbackURL: 'http://localhost:3000/welcome'
   },
+
+
   (accessToken, refreshToken, extraParams, profile, done) => {
     return done(null, profile);
   }
+
 );
+
+// var webAuth = new auth0.WebAuth({
+//   domain:       'smdigitalcrafts.auth0.com',
+//   clientID:     'Ra_Fi5ZaAbpyRZDRD7x2fLeIaVAWgo0I'
+// });
+
+// const lock = new Auth0Lock(
+// {
+//   domain: 'Ra_Fi5ZaAbpyRZDRD7x2fLeIaVAWgo0I',
+//   clientID: 'smdigitalcrafts.auth0.com'
+// },
+
+//   {
+//     auth: {
+//       redirect: false
+//     }
+//   }
+// );
+
+
 
 passport.use(strategy);
 

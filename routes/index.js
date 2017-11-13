@@ -31,7 +31,7 @@ connection.connect((error)=>{
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send("Whadup playa!");
+  // res.send("Whadup playa!");
   res.render('index', { title: 'Express' });
 });
 
@@ -52,11 +52,116 @@ router.get('/hello', function(req,res,next){
 	res.render('hello', {})
 });
 
+router.post('/changeProcess', function(req,res,next){
+
+	res.render('change', {user: req.session})
+});
+
+router.post('/changeSubmit', function(req,res,next){
+
+	res.render('profile', {user: req.session})
+});
+
 router.get('/profileX', function(req,res,next){
 
 	console.log((req.session) + "****");
+	console.log((req.session.zip) + "****");
+	console.log((req.session.address) + "****");
+	console.log((req.session.name) + "****");
+	console.log((req.session.phone) + "****");
+	console.log((req.session.insurance) + "****");
+	console.log((req.session.email) + "****");
+	
+
 	res.render('profile', {user: req.session})
 });
+
+
+router.post('/profileNew', (req,res,next)=>{
+	// res.json(req.body);
+
+	var email = req.session.email;
+	// var insurance = req.body.insurance
+
+	var selectQuery = `SELECT * FROM users WHERE email = ?;`;
+	console.log(email);
+	connection.query(selectQuery,[email],(error,results)=>{
+		if(error){
+			throw error;
+		}else {
+			if(results.length == 0){
+				res.redirect('/register?msg=badUser');
+				// res.send("That email is not registered.");
+
+				console.log("NO SUCH USER")
+			}else{
+				// call compareSync
+				// var emailMatch = compareSync(email,results[0].email);
+
+				if (email === results[0].email){
+					req.session.name = req.body.name;
+					// req.session.uid = results[0].id;
+					req.session.email = req.body.email;
+					req.session.address = req.body.address;
+					req.session.city = req.body.city;
+					req.session.state = req.body.state;
+					req.session.zip = req.body.zip;
+					req.session.phone = req.body.phone;
+					req.session.insurance = req.body.insurance
+
+			var insuranceID = config.insurance_ID[req.body.insurance];
+
+
+			// var insertQuery = `REPLACE LOW_PRIORITY INTO users (name, street_address, city, state, zip_code, phone, insurance, insurance_ID) VALUES (?,?,?,?,?,?,?,?,?,?);`;
+			var insertQuery = `UPDATE users 
+							   SET phone = ?, 
+							   name = ?,
+							   email = ?,
+							   street_address = ?,
+							   city = ?,
+							   state = ?,
+							   zip_code = ?,
+							   insurance = ?,
+							   insurance_ID = ?
+							   WHERE email = ?`;
+
+			console.log(insertQuery);
+
+			connection.query(insertQuery,[req.session.phone,
+										  req.session.name,
+										  email,
+										  req.session.address,
+										  req.session.city,
+										  req.session.state, 
+										  req.session.zip,
+										  req.body.insurance,
+										  insuranceID,
+										  email], (error)=>{
+				if (error){
+					throw error;
+
+				}else{
+					res.redirect("/profileX");
+					console.log(email);
+				}
+			});
+
+
+
+					// res.redirect('/profileX');
+					// console.log(results[0]);
+
+		// 		}else{
+		// 			res.redirect('/login?msg=badPassword');
+		// 			res.render("That email is not registered.");
+		// 			console.log("GET OUT");
+				}
+			}
+		}
+	});
+});
+
+
 
 
 // router.get('/profileX', function(req,res,next){
@@ -170,14 +275,15 @@ router.post('/loginProcess', (req,res,next)=>{
 					req.session.name = results[0].name;
 					req.session.uid = results[0].id;
 					req.session.email = results[0].email;
-					req.session.address = results[0].address;
+					req.session.address = results[0].street_address;
 					req.session.city = results[0].city;
 					req.session.state = results[0].state;
-					req.session.zip = results[0].zip;
+					req.session.zip = results[0].zip_code;
 					req.session.phone = results[0].phone;
 					req.session.insurance = results[0].insurance
 					res.redirect('/profileX');
 					console.log(results[0]);
+					console.log(results[0].zip_code);
 
 				}else{
 					res.redirect('/login?msg=badPassword');
@@ -236,10 +342,10 @@ router.get('/loginProcessX', (req,res,next)=>{
 					req.session.name = results[0].name;
 					req.session.uid = results[0].id;
 					req.session.email = results[0].email;
-					req.session.address = results[0].address;
+					req.session.address = results[0].street_address;
 					req.session.city = results[0].city;
 					req.session.state = results[0].state;
-					req.session.zip = results[0].zip;
+					req.session.zip = results[0].zip_code;
 					req.session.phone = results[0].phone;
 					req.session.insurance = results[0].insurance
 					res.redirect('/profileX');

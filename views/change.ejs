@@ -11,7 +11,6 @@
   });
 
 </script>
-<link rel="stylesheet" type="text/css" href="/stylesheets/registerstyles.css">
 
 
 </head>
@@ -19,32 +18,31 @@
 	<div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                    <h1>REGISTER</h1>
+                    <h1>CHANGE PERSONAL INFO</h1>
 
                 <div class="col-sm-12 text-danger error"></div>
-                <form action="/registerProcess" method="post">
+                <form action="/profileNew" method="post">
                    <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" name="name">
-                        <label for="email">Email Address:</label>
-                        <input type="email" class="form-control" name="email">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" name="password">
+                        <input type="text" class="form-control" name="name" value="<%=user.name%>">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" name="email" value="<%=user.email%>" readonly="readonly">
                         <label for="address">Street Address:</label>
-                        <input type="text" class="form-control" name="address">
+                        <input type="text" class="form-control" name="address" value="<%=user.address%>">
                         <label for="city">City:</label>
-                        <input type="text" class="form-control" name="city">
+                        <input type="text" class="form-control" name="city" value="<%=user.city%>">
                         <label for="state">State:</label>
-                        <input type="text" class="form-control" name="state">
+                        <input type="text" class="form-control" name="state" value="<%=user.state%>">
                         <label for="zip">Zipcode:</label>
-                        <input type="text" class="form-control" name="zip">
+                        <input type="text" class="form-control" name="zip" value="<%=user.zip%>">
                         <label for="phone">Phone Number:</label>
-                        <input type="text" class="form-control" name="phone">
+                        <input type="text" class="form-control" name="phone" value="<%=user.phone%>">
                         <br>
                         <label for="insurance">Insurance Provider:</label>
 <!--                         <input type="text" class="form-control" name="insurance">
  -->                        <!-- <div align="center"> -->
-							<select name="insurance">
+							<select name="insurance" value="<%=user.insurance%>">
+                            <option value="<%=user.insurance%>"><%=user.insurance%></option>
 							<option value="Aetna">Aetna</option>
 							<option value="Cigna">Cigna</option>
 							<option value="BlueCross">Blue Cross</option>
@@ -56,12 +54,19 @@
 							<br>
 							<br>
 							<br>             
-                        <button class="btn btn-primary">Register!</button>
-                        <br>
+
+<!--                             <form action="/profileNew" method="post">
+ -->                       <button class="btn btn-primary" type="submit">Submit changes!<button>
+<!--                             </form>
+ -->                            <br>
+                           <br>
+<!--                             <form action="/loginProcess" method="post">
+ -->                        <button class="btn btn-danger">Cancel </button>
+<!--                             </form>
+ -->                        <br>
                         <br>
                         
-                        <a  href="/login" class="btn btn-success">Already registered? Login here!</a>
-                   
+                
                     </div>
                 </form>
             </div>

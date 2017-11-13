@@ -1,6 +1,15 @@
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 30px;
+  	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background: url('https://grist.files.wordpress.com/2015/05/doctor-c-shutterstock.jpg?w=1024&h=576&crop=1');
+	background-size: cover;
+	min-height: 100%;
+
+}
+
+img{
+	width: 200px;
 }
 
 a {
@@ -11,3 +20,79 @@ w3-container a {
     color: #337ab7;
     text-decoration: none;
 }
+
+
+.box1{
+	height: 300px;
+	width: 49%;
+	margin: auto;
+	background: white;
+	display: inline-block;
+	position: relative;
+	background: rgba(0,0,0,0.5);
+}
+.box2{
+	height: 300px;
+	width: 49%;
+	margin: auto;
+	background: white;
+	display: inline-block;
+	position: relative;
+	background: rgba(0,0,0,0.5);
+}
+h2{
+	text-align: center;
+	color: white;
+}
+h4{
+	text-align: center;
+	color: white;
+}
+a{
+	color: lightblue;
+	padding: 1%;
+}
+
+#login {
+	padding: auto;
+	margin-left: 100px;
+}
+.col-sm-6{
+	padding: 0px;
+	margin: auto;
+	width: 100%;
+}
+.box1 h1{
+	text-align: center;
+	color: white;
+}
+.box2 h1{
+	text-align: center;
+	color: white;
+}
+.box-content1{
+	margin: auto;
+	/* display: inline; */
+}
+.box-content2{
+	margin: auto;
+	/* display: inline; */
+}
+
+p{
+	padding: 2%;
+	color: white;
+	position: relative;
+}
+button{
+	margin-left: 220px;
+}
+
+.footer{
+	background-color: lightblue;
+	/* position: absolute; */
+	height: 22px;
+	width: 100%;
+	margin-top: 220px;
+	overflow: hidden;
+	text-align: center;

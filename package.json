@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "auth0": "^2.8.0",
-    "auth0-js": "^8.11.1",
+    "auth0-js": "^7.6.1",
+    "auth0-lock": "^10.24.0",
     "bcrypt": "^1.0.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.18.2",
@@ -23,6 +24,7 @@
     "passport": "^0.4.0",
     "passport-auth0": "^0.6.0",
     "request": "^2.83.0",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "xhr2": "^0.1.4"
   }
 }

@@ -1,0 +1,20 @@
+body{
+	background: url('http://www.aacounty.org/sebin/l/a/page-background-default.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	
+}
+img{
+	display: block;
+	margin: auto;
+	padding: 50px;
+
+}
+.row{
+	margin-top: 10px;
+	margin-left: 100px;
+	width: 80%;
+
+}
+
