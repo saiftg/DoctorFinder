@@ -1,0 +1,57 @@
+body {
+	background-image: url("../images/blueBack.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.profile {
+	width: 200px;
+	height:  100%;
+}
+
+.doctor-results {
+	width: auto;
+	height: 150px;
+	
+	text-align: center;
+}
+
+
+.search-boxes {
+	margin-right: 50%;
+}
+
+
+
+.search-box {
+	border: 1px solid black;
+
+	margin: auto;
+
+
+}
+
+.login-register {
+	display: inline-block;
+	position: relative;
+	color: floralwhite;
+}
+
+.login-link {
+	border-right: 1px solid floralwhite;
+}
+
+.box {
+	background: rgba(0,0,0,0.6);
+	color: floralwhite;
+}
+
+.results {
+	border-bottom: 1px solid floralwhite;
+	
+
+}
+
+.page-header {
+	color: floralwhite;
+}

@@ -1,0 +1,16 @@
+body {
+	background-image: url("../images/blueBack.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.box {
+	background: rgba(0,0,0,0.6);
+	color: floralwhite;
+
+}
+
+.profile {
+	width: 200px;
+	height:  100%;
+}

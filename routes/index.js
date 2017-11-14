@@ -35,7 +35,7 @@ connection.connect((error)=>{
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // res.send("Whadup playa!");
-  res.render('index', { title: 'Express' });
+  res.render('indexNew', { title: 'Express' });
 });
 
 router.get('/users', (req, res, next)=>{
@@ -51,24 +51,33 @@ router.post('/search', (request, response) =>{
     var per_page = request.body.per_page;
     (per_page == undefined) ? per_page = 10 : per_page = per_page;
     var insurance = request.body.insurance;
-    var specialty = request.body.specialty;
-    console.log("we received from for: ", zip, per_page, insurance, specialty)
+    var specialty = request.body.Specialty;
+    var specialty_id = config.specialtyID[specialty];
+    var insuranceID = config.insurance_ID[insurance];
+
+	console.log(specialty + ".......")
+    console.log(specialty_id + ".......")
+    console.log("we received form for: ", zip, per_page, insurance, specialty)
     // console.log(request.body)
-    console.log("this is what we got from form", zip, per_page, insurance, specialty);
+    console.log("this is what we got from form", zip, per_page, insuranceID, specialty_id);
     geocode.geocodeAddress(zip).then((result)=>{
         var lat = result.latitude;
         var lng = result.longitute;
         console.log("api for guest search and", lat, lng)
-        if (insurance == undefined || specialty == undefined){
-        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=6864ad983287baee8365ce0542f8c459`;
+        if (insuranceID == undefined || specialty_id == undefined){
+        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
         }else{
         console.log("api for extended search")
-        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty}&insurance_uid=${insurance}&location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=6864ad983287baee8365ce0542f8c459`
+        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty_id}&insurance_uid=${insuranceID}&location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
         }
         request_module ({url:baseURL, json: true}, (error, res, drData) => {
             // console.log(drData)
             var parsedData = (drData);
-            var uid = parsedData.data[0].uid;
+            console.log(drData)
+            console.log("should show paresedData", lat, lng, parsedData.data + "XXXXXXXXXX");
+            // console.log(parsedData[0] + "XXXXXXXXXX");
+            // console.log(parsedData.data[0].uid + "OOOOOOOOOOOOO");
+            var uid = parsedData.data.uid;
             console.log(uid);
             // console.log(parsedData);
         
@@ -84,14 +93,16 @@ router.post('/search', (request, response) =>{
         console.log(errorMessage);
     })
 });
-router.get('/:uid', (request, response)=>{
+
+router.get('/search/:uid', (request, response)=>{
+	console.log("AAAAAAAARRRRRGGGGGGGGHHHHHH");
     var uid = request.params.uid;
-    console.log(uid);
+    console.log(uid + "&&&&&&&&&&&&&&&&&&&&");
     request_module ({url:`https://api.betterdoctor.com/2016-03-01/doctors/${uid}?user_key=6864ad983287baee8365ce0542f8c459`, json: true}, (error, res, drProfile) => {
             // console.log(drData)
             var parsedProfile = (drProfile);
             // console.log(parsedProfile);
-            response.render('profileDoc',{
+            response.render('searchResults',{
             parsedProfile: parsedProfile
         
         })      
@@ -104,6 +115,10 @@ router.get('/:uid', (request, response)=>{
 
 router.get('/register', function(req,res,next){
 	res.render('register', {})
+});
+
+router.get('/searchDoctor', function(req,res,next){
+	res.render('searchPage', {})
 });
 
 router.get('/hello', function(req,res,next){
@@ -246,6 +261,7 @@ router.post('/profileNew', (req,res,next)=>{
 
 router.get('/login', function(req,res,next){
 	res.render('login', {})
+	console.log("LOGIN ATTEMPT");
 });
 
 router.get('/welcome',
@@ -449,6 +465,65 @@ router.post('/doctorAdd', (req,res,next)=>{
 
 			var insuranceID = config.insurance_ID[req.body.insurance];
 			var doctor = "DOCTOR GIGGLES";
+
+
+			// var insertQuery = `REPLACE LOW_PRIORITY INTO users (name, street_address, city, state, zip_code, phone, insurance, insurance_ID) VALUES (?,?,?,?,?,?,?,?,?,?);`;
+			var insertQuery = `UPDATE users 
+							   SET doctor = ?
+							   WHERE email = ?`;
+
+			console.log(insertQuery);
+
+			connection.query(insertQuery,[doctor, email], (error)=>{
+				if (error){
+					throw error;
+
+				}else{
+					// res.redirect("/profileX");
+					console.log(email);
+				}
+			});
+
+				}
+			}
+		}
+	});
+});
+
+router.post('/doctorRemove', (req,res,next)=>{
+	// res.json(req.body);
+
+	var email = req.session.email;
+	// var insurance = req.body.insurance
+
+	var selectQuery = `SELECT * FROM users WHERE email = ?;`;
+	console.log(email);
+	connection.query(selectQuery,[email],(error,results)=>{
+		if(error){
+			throw error;
+		}else {
+			if(results.length == 0){
+				res.redirect('/register?msg=badUser');
+				// res.send("That email is not registered.");
+
+				console.log("NO SUCH USER")
+			}else{
+				// call compareSync
+				// var emailMatch = compareSync(email,results[0].email);
+
+				if (email === results[0].email){
+					req.session.name = req.body.name;
+					// req.session.uid = results[0].id;
+					req.session.email = req.body.email;
+					req.session.address = req.body.address;
+					req.session.city = req.body.city;
+					req.session.state = req.body.state;
+					req.session.zip = req.body.zip;
+					req.session.phone = req.body.phone;
+					req.session.insurance = req.body.insurance
+
+			var insuranceID = config.insurance_ID[req.body.insurance];
+			var doctor = "";
 
 
 			// var insertQuery = `REPLACE LOW_PRIORITY INTO users (name, street_address, city, state, zip_code, phone, insurance, insurance_ID) VALUES (?,?,?,?,?,?,?,?,?,?);`;

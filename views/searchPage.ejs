@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Search page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--JQUERY-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+	
+	<script type="text/javascript" src="js/scripts.js"></script>
+	<script>
+		$('.dropdown-toggle').dropdown()
+	</script>
+
+</head>
+
+<body>
+
+	<div class="page-header ">
+  <h1>Doctor Search<small></small></h1>
+</div>
+	<div class="container">
+	<form action = "/search" method = "post">
+		<label>Enter Zip Code</label>
+		<input type = "text" name = "zip_code">
+		<label>results per page</label>
+		<input type = "text" name = "per_page">
+		<select name="insurance" label="insurance" class="boxes">
+			<option> - Insurance - </option>
+                            <option value="Aetna">Aetna</option>
+
+                            <option value="BlueCross">Blue Cross</option>
+                            <option value="Cigna">Cigna</option>
+                            <option value="coventryhealthcare-coventryonehmo">Coventry</option>
+                            <option value="IBC_Amerihealth">IBC Amerihealth</option>
+                            <option value="Healthnet">Healthnet</option>
+                            <option value="Humana">Humana</option>
+                            <option value="United_Healthcare">United Healthcare</option>
+                            <option value="Medicaid">Medicaid</option>
+                            <option value="Medicare">Medicare</option>
+                            </select>
+
+
+        <select name="Specialty" class="boxes">
+        	<option> - Specialty - </option>
+        	<option value="Addiction">Addiction</option>
+        	<option value="Dermatologist">Dermatologist</option>
+        	<option value="Gastroenterologist">Gastroenterologist</option>
+        	<option value="OBGYN">OBGYN</option>
+        	<option value="Cardiologist">Cardiologist</option>
+        	<option value="Neurologist">Neurologist</option>
+        	<option value="optometrist">Optometrist</option>
+        	<option value="Orthodontist">Orthodontist</option>
+        	<option value="Pediatrician">Pediatrician</option>
+        	<option value="Psycologist">Psycologist</option>
+        	<option value="Psychiatrist">Psychiatrist</option>
+        </select>
+
+
+
+		<button type = "submit">Search Now!</button>
+		  		
+   		 
+  		
+</div>
+	</form> 
+</div>
+
+	
+</body>
+</html>

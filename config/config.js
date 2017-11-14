@@ -7,6 +7,7 @@ var config = {
 		password: 'doc',
 		database: 'best_doctor'
 	},
+
 	sessionSalt: "Falcons",
 
 	insurance_ID: {
@@ -16,10 +17,29 @@ var config = {
 		BlueCross: "bluecrossblueshieldofgeorgia-bcbsgabluechoicehmo",
 		IBC_Amerihealth: "ibcamerihealth-amerihealthregionalprefntwkhmohmoposhix",
 		Healthnet: "healthnet-healthnetcommunitycarenetworkhmohix",
-		United_Healthcare: "unitedhealthcare-uhcnavigatehmo"
+		United_Healthcare: "unitedhealthcare-uhcnavigatehmo",
+		Coventry: "coventryhealthcare-coventryonehmo",
+		Humana: "humana-humanaatlantahmoxhix",
+		Medicaid: "medicaid-medicaid",
+		Medicare: "medicare-medicare"
 
+	},
+
+	specialtyID: {
+		Addiction: "addiction-specialist, addiction-counselor, addiction-psychologist",
+       	Dermatologist: "dermatologist",
+       	Gastroenterologist: "gastroenterologist",
+		OBGYN: "obstetrics-gynecologist",
+        Cardiologist: "cardiologist",
+        Neurologist: "neurologist",
+        Optometrist: "optometrist",
+        Orthodontist: "orthodontist",
+        Pediatrician: "pediatrician",
+        Psychologist: "psycologist",
+        Psychiatrist: "psychiatrist"
 	}
-}
+
+};
 
 
 

@@ -1,23 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>results page</title>
+	<meta charset="UTF-8">
+	<title>results page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--JQUERY-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="stylesheets/searchResults.css">
+
+	
+	<script type="text/javascript" src="js/scripts.js"></script>
+
 </head>
 <body>
-    <h1>results page</h1>
-    <h1>Here are results based on your input:</h1>
-    <h3>Here is your latitude: <%=latitude%></h3>
-    <h3>Here is your longitude: <%=longitude%></h3>
-    
-    <% for(let i = 0; i < parsedData.data.length; i++){ %>
-        <div class = "col-sm-3">
-    <img src = "<%=parsedData.data[i].profile.image_url%>">
-    <div class = "name"><a href = "<%=parsedData.data[i].uid%>"><%=parsedData.data[i].profile.first_name%> <%=parsedData.data[i].profile.last_name%></a>
-    </div>
-    <div class = "phone"><a href="<%parsedData.data[i].uid%>"><%=parsedData.data[i].practices[0].phones[0].number%></a>
-    </div>
-        </div>
-        <%}%>
+	
+<div class="page-header">
+  <h1>Search Results<small>- - - - -</small></h1>
+</div>
+
+<div class="container-fluid">
+	<% for(let i = 0; i < parsedData.data.length; i++){ %>
+		<div class = "col-xl-3 col-lg-4 col-sm-5 col-xs-9 box results">
+			
+		<img class="doctor-results img-rounded col-sm-12" src = "<%=parsedData.data[i].profile.image_url%>">
+	
+	<div class="result-info">
+	<h4 class = "name-results"><a href = "/search/<%=parsedData.data[i].uid%>"><%=parsedData.data[i].profile.first_name%> <%=parsedData.data[i].profile.last_name%></a>
+	</h4>
+
+		<div><%=parsedData.data[i].specialties[0].name%></div>
+	</div>
+
+	<div><%=parsedData.data[i].practices[0].visit_address.city%>, <%=parsedData.data[i].practices[0].visit_address.state%></div>
+	<div><%=parsedData.data[i].practices[0].phones[0].number%>
+	<div>Accepts new paitients:
+			<% if(parsedData.data[i].practices[0].accepts_new_patients == true){ %>
+				<span>Yes</span>
+				<%}else{%>
+				<div>No</div>
+				<%}%>
+
+				
+
+			</div>
+
+
+</div>
+
+
+
+
+	
+
+		</div>
+		<%}%>
+	</div>
+
+
 </body>
 </html>
