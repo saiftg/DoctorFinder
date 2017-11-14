@@ -64,9 +64,13 @@ router.post('/search', (request, response) =>{
         var lat = result.latitude;
         var lng = result.longitute;
         console.log("api for guest search and", lat, lng)
-        if (insuranceID == undefined || specialty_id == undefined){
+        if (insurance == ""){
+        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty_id}&location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
+        }else if (insuranceID == undefined || specialty_id == undefined){
         var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
+    
         }else{
+
         console.log("api for extended search")
         var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty_id}&insurance_uid=${insuranceID}&location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
         }
@@ -291,6 +295,8 @@ router.post('/registerProcess', (req,res, next)=>{
 	var state = req.body.state;
 	var zip_code = req.body.zip;
 	var phone = req.body.phone;
+
+	console.log(phone + "HHGGGGGGJSHGGDJGJSGDJGDSGGD");
 	
 	var insuranceID = config.insurance_ID[insurance];
 
@@ -301,20 +307,27 @@ router.post('/registerProcess', (req,res, next)=>{
 	const selectQuery = "SELECT * FROM users WHERE email = ?;";
 	connection.query(selectQuery,[email],(error,results)=>{
 		if(results.length != 0){
-			res.redirect('/login?msg=registered');
+			console.log("EMAIL REG ALREADY");
+			res.redirect('/register?msg=EMAIL already registered');
+
 		}else{
 			var hash = bcrypt.hashSync(password);
 
 			var insertQuery = `INSERT INTO users (name, email, password, street_address, city, state, zip_code, phone, insurance, insurance_ID) VALUES (?,?,?,?,?,?,?,?,?,?);`;
-		}
-			connection.query(insertQuery,[name, email, hash, street_address, city, state, zip_code, phone, insurance, insuranceID], (error)=>{
+		
+
+		connection.query(insertQuery,[name, email, hash, street_address, city, state, zip_code, phone, insurance, insuranceID], (error)=>{
 				if (error){
 					throw error;
 
 				}else{
 					res.redirect("/login");
 				}
-			});
+				});
+
+		}
+			
+			
 	// 	}else{
 	// 		res.redirect("/?msg=fail");
 	// 	}

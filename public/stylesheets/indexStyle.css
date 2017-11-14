@@ -1,13 +1,24 @@
 body {
+	position: relative;
 	padding: 30px;
   	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 	background: url('https://grist.files.wordpress.com/2015/05/doctor-c-shutterstock.jpg?w=1024&h=576&crop=1');
 	background-size: cover;
-	min-height: 100%;
 }
 
+
+.page-wrapper{
+    height: 95vh;
+   }
+
 .form .login-form {
-  display: none;
+	position: inherit;
+	display: none;
+}
+
+.form .register-form{
+	position: relative;
+	display: none;	
 }
 
 .form a {
@@ -17,8 +28,11 @@ body {
 
 
 img{
-	width: 200px;
+	width: 65px;
+	height: 65px;
 }
+
+
 
 .left, .right{
 	font-size: 18px;
@@ -29,14 +43,12 @@ img{
 	z-index: 5;
 	height: 300px;
 	width: 50%;
-	margin: 0 auto;
-	text-align: center;
+	margin: 10% auto;
 	background: rgba(0,0,0,0.5);
 	border-radius: 10px;
-	padding-bottom: 10px;
 }
 
-h1, h2, h4{
+h1, h2, h4, h5{
 	text-align: center;
 	color: white;
 }
@@ -48,11 +60,10 @@ p{
 }
 
 
-.box1-content{
+.box-content{
 	display: block;
 	text-align: center;
-/*	padding-bottom: 35px;
-*/}
+}
 
 .form input {
   font-family: "Roboto", sans-serif;
@@ -88,12 +99,13 @@ p{
 
 .footer{
 	background-color: lightblue;
-	/* position: absolute; */
 	height: 22px;
 	width: 100%;
-	margin-top: 220px;
 	overflow: hidden;
-	text-align: center;
+	position: fixed;
+	bottom:0;
+	left:0;
+	border-radius: 10px;
 }
 
 #guest{
@@ -104,8 +116,21 @@ p{
 	margin-top: 24px;
 }
 
-#logos{
-/*	margin-bottom: 50px;
-	padding-bottom: 30px;*/
+#form-group{
+	padding: 0px;
+}
+ #insurance{
+ 	width: 50%;
+    margin-bottom: 10px;
+ }
 
+.header{
+	width: 100%;
+	position: fixed;
+	font-size: 25px;
+	left: 20px;
+	top: 20px;
+	color: #6c9521;
+	/*color: #4CAF50;*/
+	font-size: 31px;
 }
