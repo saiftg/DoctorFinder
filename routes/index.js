@@ -49,7 +49,7 @@ router.get('/users', (req, res, next)=>{
 router.post('/search', (request, response) =>{
     var zip = request.body.zip_code;
     var per_page = request.body.per_page;
-    (per_page == undefined) ? per_page = 12 : per_page = per_page;
+    (per_page == undefined) ? per_page = 9 : per_page = per_page;
     var insurance = request.body.insurance;
     var specialty = request.body.specialty;
     var specialty_id = config.specialtyID[specialty];
@@ -65,12 +65,12 @@ router.post('/search', (request, response) =>{
         var lng = result.longitute;
         console.log("api for guest search and", lat, lng)
         if (insuranceID == undefined || specialty_id == undefined){
-        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
+        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?location=${lat}%2C${lng}%2C100&sort=distance-asc&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
     	}else if (insurance == undefined){
-        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty_id}&location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
+        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty_id}&location=${lat}%2C${lng}%2C100&sort=distance-asc&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
         }else {
         console.log("api for extended search")
-        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty_id}&insurance_uid=${insuranceID}&location=${lat}%2C${lng}%2C100&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
+        var baseURL = `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialty_id}&insurance_uid=${insuranceID}&location=${lat}%2C${lng}%2C100&sort=distance-asc&skip=0&limit=${per_page}&user_key=b277ca758b6d6b1634f652b3010348e1`;
         }
         request_module ({url:baseURL, json: true}, (error, res, drData) => {
             // console.log(drData)
@@ -107,7 +107,8 @@ router.get('/search/:uid', (request, response)=>{
             response.render('searchResults',{
             parsedProfile: parsedProfile
         
-        })      
+        })
+        console.log(parsedProfile.data.profile.first_name);  
     })
 });
 
@@ -309,8 +310,8 @@ router.post('/registerProcess', (req,res, next)=>{
 		if(results.length != 0){
 			console.log("EMAIL REG ALREADY");
 			// res.redirect('/register?msg=EMAIL already registered');
-			res.redirect('login', {
-				function: pullLogin
+			res.render('indexNew', {
+				onLoad: true
 			})
 
 		}else{
@@ -324,7 +325,9 @@ router.post('/registerProcess', (req,res, next)=>{
 					throw error;
 
 				}else{
-					res.redirect("/login");
+					res.render('indexNew', {
+						onLoad: true
+			});
 				}
 				});
 
@@ -460,13 +463,7 @@ router.post('/doctorAdd', (req,res,next)=>{
 	connection.query(selectQuery,[email],(error,results)=>{
 		if(error){
 			throw error;
-		}else {
-			if(results.length == 0){
-				res.redirect('/register?msg=badUser');
-				// res.send("That email is not registered.");
-
-				console.log("NO SUCH USER")
-			}else{
+		}else{
 				// call compareSync
 				// var emailMatch = compareSync(email,results[0].email);
 
@@ -481,42 +478,42 @@ router.post('/doctorAdd', (req,res,next)=>{
 					req.session.phone = req.body.phone;
 					req.session.insurance = req.body.insurance
 
-			// var uid = request.params.uid;
-   //  		console.log(uid + "QQQQQQQQQQQQQQQXXXXXIIIIIIISSSSSS");
-   //  		request_module ({url:`https://api.betterdoctor.com/2016-03-01/doctors/${uid}?user_key=6864ad983287baee8365ce0542f8c459`, json: true}, (error, res, drProfile) => {
-   //          // console.log(drData)
-   //          var parsedProfile = (drProfile);
-            // console.log(parsedProfile);
-        //     response.render('searchResults',{
-        //     parsedProfile: parsedProfile
-        
+	
         // })      
         	console.log("mkaaaaay");
 
 			var insuranceID = config.insurance_ID[req.body.insurance];
-			// var doctor = "DR DOLITTLE";
-			var drName = req.body.name;
+			var drName = "DR TEST GUY";
+			// var drName = req.body.drName;
+			// var drName = req.session.drName;
+
+			console.log(drName);
 
 			// var insertQuery = `REPLACE LOW_PRIORITY INTO users (name, street_address, city, state, zip_code, phone, insurance, insurance_ID) VALUES (?,?,?,?,?,?,?,?,?,?);`;
-			var insertQuery = `UPDATE doctors 
-							   SET drName = ?
+			var insertQuery = `UPDATE users 
+							   SET doctor = ?
 							   WHERE email = ?`;
+							   
 
 			var uid = req.params.uid;
-    
-    	request_module ({url:`https://api.betterdoctor.com/2016-03-01/doctors/${uid}?user_key=6864ad983287baee8365ce0542f8c459`, json: true}, (error, res, drProfile) => {
-            // console.log(drData)
-            // console.log(parsedProfile);
+		    request_module ({url:`https://api.betterdoctor.com/2016-03-01/doctors/${uid}?user_key=6864ad983287baee8365ce0542f8c459`, json: true}, (error, drProfile, res) => {
+		            // console.log(drData)
             var parsedProfile = (drProfile);
-            console.log(parsedProfile);
-			var doctor = parsedProfile.data.profile.first_name;
-            res.render('profile',{
+            // console.log(parsedProfile);
+            res.render('searchResults',{
             parsedProfile: parsedProfile
         
-        })      
-                   	console.log("mkaaaaayxXXXXXXXXXX");
+        })
+        console.log(parsedProfile.data + "^^^^^^^^^^^######^^^^^^^");  
+    })
+    
+      
+            
 
-			console.log(parsedProfile.data.profile.first_name);
+
+            console.log("mkaaaaayxXXXXXXXXXX");
+
+			// console.log(parsedProfile.data.profile.first_name);
 
 			connection.query(insertQuery,[drName, email], (error)=>{
 				if (error){
@@ -529,16 +526,10 @@ router.post('/doctorAdd', (req,res,next)=>{
 
 				}
 			});
-    })				   
+   			   
 
 
-
-    
-
-
-
-
-				}
+				
 			}
 		}
 	});

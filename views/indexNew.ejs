@@ -6,6 +6,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel='stylesheet' href='./stylesheets/indexStyle.css' />
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+	<script>
+		var onLoad;
+		onLoad = <%- locals.onLoad %>
+	</script>  
+
 </head>
 
 <body>
@@ -24,8 +30,8 @@
 			<div class="form">
 				<form class="login-form" method = "post" action = "/loginProcess">
 					<h1>Welcome Back</h1>
-			      <input type="text" placeholder="email" name = "email" value="dave@dave.com"/>
-			      <input type="password" placeholder="password" name = "password" value="dave"/>
+			      <input type="text" name = "email" placeholder="Enter Email" />
+			      <input type="password" name = "password" placeholder="Enter Password" />
 			      <button type = "submit">Sign In</button>
 			      <p class="left col-xs-4 message"><a href="#">Back to Guest</a></p>
 			      	   <form action="/loginProcessX" method="post">
@@ -57,14 +63,15 @@
                         <input type="text" class="form-control" name="zip" placeholder="Zip">
                         <input type="text" class="form-control" name="phone" placeholder="Phone Number">
 							<select name="insurance" id="insurance">
-							<option name = "placeholder">Select type of insurance</option>
 							<option value="Aetna">Aetna</option>
-							<option value="Cigna">Cigna</option>
-							<option value="BlueCross">Blue Cross</option>
-							<option value="IBC_Amerihealth">IBC Amerihealth</option>
-							<option value="Healthnet">Healthnet</option>
-							<option value="United_Healthcare">United Healthcare</option>
-							<option value="Humana">Humana</option>
+
+                            <option value="BlueCross">Blue Cross</option>
+                            <option value="Cigna">Cigna</option>
+                            <option value="Coventry">Coventry</option>
+                            <option value="Humana">Humana</option>
+                            <option value="United_Healthcare">United Healthcare</option>
+                            <option value="Anthem">Anthem</option>
+                            <option value="Multiplan">Multiplan</option>
                             <option value="Medicaid">Medicaid</option>
                             <option value="Medicare">Medicare</option>
 							</select> 
@@ -85,9 +92,8 @@
 			
 	</div>
 	<script>
-		<%function%>
+		var onLoad;
 		//functions to call to produce the right form
-		
 		// pull login function
 		var pullLogin = ()=>{
 			$('.guest-form').toggle(()=>{
@@ -132,6 +138,12 @@
 			toGuestPage();
 			console.log('registration form should have been produced by now');
 		});
+
+		$(document).ready(()=>{
+			if (onLoad) {
+				pullLogin()
+			}
+		})
     </script>
  </div>
 </body>

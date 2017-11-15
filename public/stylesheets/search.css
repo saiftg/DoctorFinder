@@ -1,0 +1,100 @@
+body{
+	background: url('https://grist.files.wordpress.com/2015/05/doctor-c-shutterstock.jpg?w=1024&h=576&crop=1');
+	background-size: cover;
+	min-height: 100%;
+}
+
+.header{
+	width: 100%;
+	position: fixed;
+	font-size: 31px;
+	color: #6c9521;
+	left: 20px;
+	top: 20px;
+}
+
+img{
+	height: 65px;
+	width: 65px;
+}
+.content{
+	padding: 2%;
+	margin-top: 6%;
+}
+
+.menu{
+	position: relative;
+	z-index: 5;
+	height: 340px;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 80px;
+	text-align: center;
+	background: rgba(0,0,0,0.5);
+	border-radius: 10px;
+}
+
+h1{
+	color: white;
+	padding: 1%;
+}
+
+label{
+	color: white;
+}
+
+input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 14px;
+  box-sizing: border-box;
+  font-size: 21px;
+  text-align: center;
+}
+
+
+
+form{
+	padding: 2%;
+}
+
+
+select{
+	width: 40%;
+	height: 30px;
+}
+
+button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 14px;
+  color: #FFFFFF;
+  font-size: 21px;
+  -webkit-transition: all 0.5 ease;
+  transition: all 0.5 ease;
+  cursor: pointer;
+  margin-top: 3%;
+
+}
+
+button:hover{
+	background: #16e11e;
+}
+
+.footer{
+	background-color: lightblue;
+	width: 100%;
+	text-align: center;
+	position:fixed;
+	left: 0;
+	bottom: 0;
+	font-size: 20px;
+}

@@ -1,5 +1,7 @@
 body{
-	background: linear-gradient(to right, white, dodgerblue);
+	/*background: linear-gradient(to right, white, dodgerblue);*/
+	background: url('https://grist.files.wordpress.com/2015/05/doctor-c-shutterstock.jpg?w=1024&h=576&crop=1');
+	background-size: cover;
 }
 h1{
 	margin-top: 50px;
@@ -15,6 +17,20 @@ h5{
 	width: 60%;
 	margin: auto;
 	margin-top: 40px;
-	box-shadow: 10px 10px 5px #888888;
+	/*box-shadow: 10px 10px 5px #888888;*/
 	border-radius: 5%;
 }
+
+input{
+	width:75%;
+}
+
+/*.wrapper{
+	margin: auto;
+	background-image: url('https://impactmenus.com/images/stories/Clipboard-front-resized-reduced.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 60%;
+	height: 180%;
+
+}*/

@@ -21,9 +21,13 @@
 </head>
 <body>
 	<div class="container">
+        <div class="wrapper">
+            <div class="page-header text-center">
+                    <h1>CHANGE PERSONAL INFO</h1>
+                </div> 
         <div class="row">
             <div class="col-sm-12 text-center">
-                    <h1>CHANGE PERSONAL INFO</h1>
+                   
 
                 <div class="col-sm-12 text-danger error"></div>
                 <form action="/profileNew" method="post">
@@ -49,12 +53,14 @@
 							<select name="insurance" value="<%=user.insurance%>">
                             <option value="<%=user.insurance%>"><%=user.insurance%></option>
 							<option value="Aetna">Aetna</option>
-							<option value="Cigna">Cigna</option>
-							<option value="BlueCross">Blue Cross</option>
-							<option value="IBC_Amerihealth">IBC Amerihealth</option>
-							<option value="Healthnet">Healthnet</option>
-							<option value="United_Healthcare">United Healthcare</option>
+
+                            <option value="BlueCross">Blue Cross</option>
+                            <option value="Cigna">Cigna</option>
+                            <option value="Coventry">Coventry</option>
                             <option value="Humana">Humana</option>
+                            <option value="United_Healthcare">United Healthcare</option>
+                            <option value="Anthem">Anthem</option>
+                            <option value="Multiplan">Multiplan</option>
                             <option value="Medicaid">Medicaid</option>
                             <option value="Medicare">Medicare</option>
 							</select>
@@ -77,6 +83,7 @@
                 
                     </div>
                 </form>
+            </div>
             </div>
         </div>
     </div>

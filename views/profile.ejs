@@ -29,6 +29,12 @@
 			<div id="info" class="col-sm-12">
 				<div class="col-sm-3">
 					<img src="http://media.masslive.com/breakingnews/photo/2012/07/norrisjpg-02cf5b55dfb25bd6.jpg">
+					<div class="col-sm-12">
+					<form action="/changeProcess" method="post">
+			<button class="btn btn-primary col-sm-6" id="change-info-btn">Change Info</button>
+		</form>
+		<a href="/"><button class="btn btn-danger" id="exit-btn">Logout</button></a>
+	</div>
 				</div>
 				<div class="col-sm-5">
 					<table style="width:100%">
@@ -82,14 +88,12 @@
 
 
 
-				<form action="/changeProcess" method="post">
-			<button class="btn btn-primary" id="change-info-btn">Change Info</button>
-		</form>
+				
 		<br>
 		<form action="/searchDoctor" method="get">
 			<button class="btn btn-success" id="search-btn">Back to Search</button>
 			</form>
-			<a href="/"><button class="btn btn-danger" id="exit-btn">Logout</button></a>
+			
 
 		
 			</div>
