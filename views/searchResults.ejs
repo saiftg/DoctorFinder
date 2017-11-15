@@ -24,9 +24,10 @@
 	<div class="container box">
 
 
-		
+<form action="/doctorAdd" method="post">
+
 	<div class="page-header">
-  		<h2><%=parsedProfile.data.profile.first_name%> <%=parsedProfile.data.profile.last_name%></h2>
+  		<h2 name="name"><%=parsedProfile.data.profile.first_name%> <%=parsedProfile.data.profile.last_name%></h2>
 		</div>
 		<div class="col-sm-12">
 			<div class="col-sm-3">
@@ -37,7 +38,7 @@
  			<h3>Profile:</h3>
 
   			<tr>
-    			<th>Practtice:</th>
+    			<th>Practice:</th>
    
     			<td ><%=parsedProfile.data.practices[0].name%></td>
   			</tr>
@@ -90,8 +91,8 @@
 
 
 
-
 			<button class="btn btn-primary" id="add-favorites">Add to favorites</button>
+		</form>
 		</div>
 	
 

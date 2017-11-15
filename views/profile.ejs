@@ -88,9 +88,16 @@
 		<br>
 		<form action="/searchDoctor" method="get">
 			<button class="btn btn-success" id="search-btn">Back to Search</button>
-		</form>
+			</form>
+			<a href="/"><button class="btn btn-danger" id="exit-btn">Logout</button></a>
+
+		
 			</div>
 		</tr>
+
+
+
+
 		<div class = "col-sm-4">
 		<form action="/doctorAdd" method="post">
 
@@ -99,14 +106,14 @@
 
 					<tr> 
 						 <td>Dr. Victor Von Doom</td>
-						 <button class="btn btn-success">Add</button>
-					</tr>
+<!-- 						 <button class="btn btn-success">Add</button>
+ -->					</tr>
 
 					<tr> 
 						 <td>Dr. Otto Octavius </td>
 					</tr>
 					<tr> 
-						 <td>Dr. Acula</td>
+						 <td><%=user.doctor%></td>
 					</tr>
 					<tr> 
 						 <td>Dr. Dre</td>
@@ -120,8 +127,8 @@
 
 				<form action="/doctorRemove" method="post">
 
-				 <button class="btn btn-danger">Remove</button>
-				 	</form>
+<!-- 				 <button class="btn btn-danger">Remove</button>
+ -->				 	</form>
 
 		</div>
 

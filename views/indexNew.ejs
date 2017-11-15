@@ -24,8 +24,8 @@
 			<div class="form">
 				<form class="login-form" method = "post" action = "/loginProcess">
 					<h1>Welcome Back</h1>
-			      <input type="text" placeholder="email" name = "email"/>
-			      <input type="password" placeholder="password" name = "password"/>
+			      <input type="text" placeholder="email" name = "email" value="dave@dave.com"/>
+			      <input type="password" placeholder="password" name = "password" value="dave"/>
 			      <button type = "submit">Sign In</button>
 			      <p class="left col-xs-4 message"><a href="#">Back to Guest</a></p>
 			      	   <form action="/loginProcessX" method="post">
@@ -37,7 +37,7 @@
 			    <!-- guest form	 -->
 			    <form class="guest-form" method = "post" action="/search">
 			    	<h1 id = "guest">Welcome Guest</h1>
-			      <input type="text" placeholder="Enter Your Address Or Zip Code"/ required>
+			      <input type="text" placeholder="Enter Your Address Or Zip Code" name="zip_code" required/>
 			      <button type="submit">Quick Unregistered Search</button>
 			      <div class = "row guest-2">
 			      	<p class="left col-xs-1 message"><a href="#">Login</a></p>
@@ -64,6 +64,9 @@
 							<option value="IBC_Amerihealth">IBC Amerihealth</option>
 							<option value="Healthnet">Healthnet</option>
 							<option value="United_Healthcare">United Healthcare</option>
+							<option value="Humana">Humana</option>
+                            <option value="Medicaid">Medicaid</option>
+                            <option value="Medicare">Medicare</option>
 							</select> 
 							<br>         
                         <button id="form-group" class="form-control" type="submit">Register!</button>
@@ -77,38 +80,58 @@
 	</div>
 </div>
 <div class="col-sm-12 text-center footer">
-	2017 Full Stack School Project Team: Nikolas, Saiph, Taylor, Zach
+	2017 Full Stack School Project Team: Nikolas, Saif, Taylor, Zach
 </div>
 			
 	</div>
 	<script>
-		// to pull login page
-    	$('.message a').click(function(){
-    		console.log("login form will be produced")
-    	$('.guest-form').toggle(()=>{
+		<%function%>
+		//functions to call to produce the right form
+		
+		// pull login function
+		var pullLogin = ()=>{
+			$('.guest-form').toggle(()=>{
 	   		$('.login-form').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
 	   			console.log("now that effect has finished and callback function served we can move on")
 	   			});
 	   		});
-		});
-		// to pusll registration page
-		$('.register a').click(function(){
-			console.log("register form will be produced")
+		}
+
+		// pull registration page function
+		var pullRegistration = ()=>{
 			$('.guest-form').hide('slow');
 			$('.guest-menu').animate({height: "600px", top: "-150px"}, "slow")
 			$('.register-form').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
 				console.log('produce register form');
 			});
-		});
+		}
+
 		// back to guest page
-		$('.back-to-guest').click(()=>{
-			console.log('back to guest page');
+		var toGuestPage = ()=>{
 			$('.register-form').hide("slow");
 			$('.guest-menu').animate({height: "300px", top: "0"}, "slow")
 			$('.guest-form').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
 				console.log('welcome guest form has been served');
 			});
-		})
+		}
+
+
+
+		// to pull login page
+    	$('.message a').click(function(){
+    		pullLogin();
+    		console.log("login form will be produced")
+		});
+		// to pull registration page
+		$('.register a').click(function(){
+			pullRegistration();
+			console.log("register form will be produced")	
+		});
+		// back to guest page
+		$('.back-to-guest').click(()=>{
+			toGuestPage();
+			console.log('registration form should have been produced by now');
+		});
     </script>
  </div>
 </body>

@@ -27,11 +27,11 @@
 	<div class="container">
 	<form action = "/search" method = "post">
 		<label>Enter Zip Code</label>
-		<input type = "text" name = "zip_code">
+		<input type = "text" name = "zip_code" value="<%=user.zip%>">
 		<label>results per page</label>
 		<input type = "text" name = "per_page">
 		<select name="insurance" label="insurance" class="boxes">
-			<option value = ""> - Insurance - </option>
+			<option value = "<%=user.insurance%>"><%=user.insurance%></option>
                             <option value="Aetna">Aetna</option>
 
                             <option value="BlueCross">Blue Cross</option>
@@ -46,7 +46,7 @@
                             </select>
 
 
-        <select name="Specialty" class="boxes">
+        <select name="specialty" class="boxes">
         	<option> - Specialty - </option>
         	<option value="Addiction">Addiction</option>
         	<option value="Dermatologist">Dermatologist</option>
