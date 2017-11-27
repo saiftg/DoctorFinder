@@ -14,7 +14,7 @@ const geocode = require('../geocode/geocode.js');
 const env = {
   AUTH0_CLIENT_ID: 'Ra_Fi5ZaAbpyRZDRD7x2fLeIaVAWgo0I',
   AUTH0_DOMAIN: 'smdigitalcrafts.auth0.com',
-  AUTH0_CALLBACK_URL: 'http://localhost:3000/welcome'
+  AUTH0_CALLBACK_URL: 'class.saifmahmud.com/welcome'
 };
 
 
