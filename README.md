@@ -1,10 +1,10 @@
 # DoctorFinder
 
-Search for doctors by specialty, accepted insurance plans and zipcode.
+Search for doctors by specialty, accepted insurance plans and zipcode, using the BetterDoctor API.
 
 Created using Node.js, express and some JQuery.
 User database managed by mySQL ( Pancakes, yum!)
-Login by social media feature handles by auth0.
+Login by social media feature handled by auth0.
 
 ![doc1](https://user-images.githubusercontent.com/26581591/34652894-7c539ba0-f3b2-11e7-89fb-9fc786530933.png)
 Main Login
